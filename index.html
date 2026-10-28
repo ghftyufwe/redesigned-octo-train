@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07111f" />
+    <meta name="description" content="Software Passport Registry — evidence-first software trust and governance infrastructure." />
+    <meta name="google-site-verification" content="Kq466rrp_2UN31MAwF3FgfUlwDlWh8H57dQWRvzfxqM" />
+    <link rel="icon" type="image/png" href="/brand/spr-icon.png" />
+    <link rel="apple-touch-icon" href="/brand/spr-icon.png" />
+    <title>Software Passport Registry</title>
+
+    <!--
+      Site-level social metadata, and the fallback shell for any route that is
+      not prerendered. A canonical link element is deliberately omitted HERE:
+      this shell is what the SPA catch-all rewrite serves for every unlisted
+      route, so a fixed canonical would point them all at the homepage.
+
+      Per-route metadata is not missing; it is generated. At build time
+      scripts/prerender-public-routes.mjs writes one static HTML file per
+      public route (src/seo/public-pages.json) with that route's own title,
+      description, canonical, Open Graph and Twitter tags, and its own WebPage
+      node in the JSON-LD graph. Vercel resolves those static files before the
+      catch-all rewrite, so /pricing and /msp serve their own head to search
+      and social crawlers, which never execute the JavaScript bundle.
+
+      Consequence for edits: the tags below are the substitution targets. The
+      prerender fails the build if any of them is missing or duplicated, rather
+      than silently publishing pages that all claim the homepage title.
+    -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Software Passport Registry" />
+    <meta property="og:title" content="Software Passport Registry" />
+    <meta property="og:description" content="The trust infrastructure layer for software. SPR gives software a persistent identity, verifies its evidence, and reports observed evidence only — never inferred safety." />
+    <meta property="og:url" content="https://softwarepassportregistry.com/" />
+    <meta property="og:image" content="https://softwarepassportregistry.com/brand/spr-logo.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Software Passport Registry" />
+    <meta name="twitter:description" content="Evidence-first software trust infrastructure. Observed evidence, explicit unknowns, no inferred safety." />
+    <meta name="twitter:url" content="https://softwarepassportregistry.com/" />
+    <meta name="twitter:image" content="https://softwarepassportregistry.com/brand/spr-logo.jpg" />
+
+    <!--
+      Organization + WebSite only. Both are supported by content actually
+      visible on the homepage. No software-application, rating, review,
+      offer or certification schema is emitted: SPR has no such data, and
+      fabricating structured data would contradict the product's own
+      evidence-first rule.
+    -->
+    <script nonce="__SPR_CSP_NONCE__" type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://www.softwarepassportregistry.com/#organization",
+            "name": "Software Passport Registry",
+            "url": "https://www.softwarepassportregistry.com/",
+            "logo": "https://www.softwarepassportregistry.com/brand/spr-logo.jpg"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.softwarepassportregistry.com/#website",
+            "url": "https://www.softwarepassportregistry.com/",
+            "name": "Software Passport Registry",
+            "description": "The trust infrastructure layer for software.",
+            "publisher": { "@id": "https://www.softwarepassportregistry.com/#organization" }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <script nonce="__SPR_CSP_NONCE__">
+      (function () {
+        try {
+          var saved = window.localStorage.getItem('spr-theme');
+          document.documentElement.setAttribute('data-theme', saved === 'light' ? 'light' : 'dark');
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
